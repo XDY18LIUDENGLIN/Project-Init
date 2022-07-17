@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    #多环境配置
+    active: @profileActive@
