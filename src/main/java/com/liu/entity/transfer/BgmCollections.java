@@ -1,4 +1,4 @@
-package com.myblog.adkblog.vo.Transfer;
+package com.liu.entity.transfer;
 
 import lombok.Data;
 
