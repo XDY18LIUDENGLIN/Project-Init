@@ -1,4 +1,4 @@
-package com.liu.entity.transfer;
+package com.liu.entity.pojo;
 
 import lombok.Data;
 

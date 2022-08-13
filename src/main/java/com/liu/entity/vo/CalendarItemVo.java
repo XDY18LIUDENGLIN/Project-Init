@@ -1,6 +1,12 @@
-package com.liu.entity.transfer;
+package com.liu.entity.vo;
 
+import com.alibaba.fastjson2.annotation.JSONField;
+import com.liu.entity.pojo.BgmCollections;
+import com.liu.entity.pojo.BgmImages;
+import com.liu.entity.pojo.Rating;
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author LIUDENGLIN
@@ -10,7 +16,7 @@ public class CalendarItemVo {
     /**
      * id
      */
-    private Integer id;
+    private Long id;
     /**
      * 封面url
      */
@@ -26,7 +32,8 @@ public class CalendarItemVo {
     /**
      *  中文名称
      */
-    private String name_cn;
+    @JSONField(name = "name_cn")
+    private String nameCn;
     /**
      *  概括 简介
      */
@@ -34,11 +41,13 @@ public class CalendarItemVo {
     /**
      *  播出日期
      */
-    private String air_date;
+    @JSONField(name = "air_date")
+    private Date airDate;
     /**
      * 播出时间 （星期几）
      */
-    private Integer air_weekday;
+    @JSONField(name = "air_weekday")
+    private Integer airWeekday;
     /**
      * 权重
      */

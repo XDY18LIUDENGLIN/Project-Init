@@ -1,4 +1,4 @@
-package com.liu.entity.transfer;
+package com.liu.entity.pojo;
 
 import lombok.Data;
 
@@ -13,7 +13,7 @@ public class Rating {
      */
     private Integer total;
     /**
-     * 这个是json文件转成objec  前端再做解析
+     * 这个是json文件转成object  前端再做解析
      */
     private Object count;
     /**

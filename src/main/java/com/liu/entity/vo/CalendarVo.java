@@ -1,7 +1,6 @@
 package com.liu.entity.vo;
 
-import com.liu.entity.transfer.CalendarItemVo;
-import com.liu.entity.transfer.WeekDay;
+import com.liu.entity.pojo.WeekDay;
 import lombok.Data;
 
 import java.util.List;

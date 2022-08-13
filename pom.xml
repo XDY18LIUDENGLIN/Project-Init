@@ -26,6 +26,7 @@
         <ip2region.version>1.7.2</ip2region.version>
         <jsoup.version>1.11.3</jsoup.version>
         <httpClientUtils.version>1.0</httpClientUtils.version>
+        <hutool.version>5.3.3</hutool.version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,12 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.arronlong.httpclientutil/httpclientutil -->
@@ -109,11 +116,11 @@
         </dependency>
 
         <!--        mybatisPlus-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisPlus.version}</version>
-        </dependency>
+        </dependency>-->
 
         <!--        swagger-->
         <dependency>
@@ -123,10 +130,10 @@
         </dependency>
 
         <!--        mysql-->
-        <dependency>
+        <!--<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!--        lombok-->
         <dependency>

@@ -12,6 +12,9 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Null;
+
 /**
  * @author : LiuDengLin
  * Email : 2092669791@qq.com
@@ -29,6 +32,7 @@ public class SwaggerConfig {
         /**
          * 项目应用名
          */
+
         private String applicationName = "XXX-XXXXX";
         /**
          * 项目版本信息
