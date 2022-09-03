@@ -24,7 +24,8 @@ import java.lang.reflect.Method;
 @Slf4j
 @Aspect
 @Component
-public class EnvironmentAspect {
+public class
+EnvironmentAspect {
 
     /***
      * 定义config切入点拦截规则，拦截Environment注解的方法

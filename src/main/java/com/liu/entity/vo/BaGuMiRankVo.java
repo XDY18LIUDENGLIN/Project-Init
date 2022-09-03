@@ -1,5 +1,6 @@
 package com.liu.entity.vo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class BaGuMiRankVo implements Serializable {
     /**
      * 中文名称
      */
+    @JsonProperty("name_cn")
     private String nameCn;
     /**
      * 排名
