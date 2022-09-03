@@ -5,6 +5,7 @@ import com.arronlong.httpclientutil.exception.HttpProcessException;
 import com.liu.entity.req.BaGuMiRankReq;
 import com.liu.entity.vo.BaGuMiRankVo;
 import com.liu.entity.vo.CalendarVo;
+import com.liu.service.AllBaseConfig;
 import com.liu.service.BanGuMiApiService;
 import com.liu.utils.BaGuMiUtils;
 import com.liu.utils.ReptileUtils;
@@ -13,7 +14,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class BanGuMiApiServiceImpl implements BanGuMiApiService {
-    private ReptileUtils reptileUtils;
 
     private String[] userAgents={"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:83.0) Gecko/20100101 Firefox/83.0",
@@ -38,15 +37,11 @@ public class BanGuMiApiServiceImpl implements BanGuMiApiService {
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
             "Mozilla/5.0 (Linux; Android 10; HLK-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.92 Mobile Safari/537.36",
             "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"};
-    @Autowired
-    public void setReptileUtils(ReptileUtils reptileUtils) {
-        this.reptileUtils = reptileUtils;
-    }
 
     @Override
     public List<CalendarVo> listCalendar() throws HttpProcessException {
         //TODO 设置定时任务,每天爬取数据一次,缓存到Redis中
-        String dataObject = JSON.toJSONString(reptileUtils.listCalendarApi());
+        String dataObject = JSON.toJSONString(ReptileUtils.listCalendarApi());
         List<CalendarVo> calendarVos = JSON.parseArray(dataObject, CalendarVo.class);
         //TODO 判断这个是否存在数据，不存在把数据保存到redis中或数据库中
         return calendarVos;
@@ -55,18 +50,18 @@ public class BanGuMiApiServiceImpl implements BanGuMiApiService {
     @Override
     public Object getSimpleSubject(Integer subjectId) throws HttpProcessException {
         StringBuffer pathUrl = new StringBuffer("/v0/subjects/").append(subjectId);
-        Object dataWithHttpUtils = reptileUtils.listCalendarApi(pathUrl.toString());
+        Object dataWithHttpUtils = ReptileUtils.listCalendarApi(pathUrl.toString());
         return dataWithHttpUtils;
     }
 
     @Override
-    public Object getSubject(Integer subjectId, String pageSize, String timeStamp) throws HttpProcessException {
+    public Object getSubject(Integer subjectId, String responseGroup, String timeStamp) throws HttpProcessException {
         StringBuffer pathUrl = new StringBuffer("/subject/").append(subjectId);
-        pathUrl.append("?responseGroup=").append(pageSize);
-        if (timeStamp!=null){
+        pathUrl.append("?responseGroup=").append(responseGroup);
+        if (timeStamp != null) {
             pathUrl.append("&timestamp=").append(timeStamp);
         }
-        Object dataWithHttpUtils = reptileUtils.listCalendarApi(pathUrl.toString());
+        Object dataWithHttpUtils = ReptileUtils.listCalendarApi(pathUrl.toString());
         return dataWithHttpUtils;
     }
 
@@ -74,8 +69,6 @@ public class BanGuMiApiServiceImpl implements BanGuMiApiService {
     public Object listAnimeRankInfo(BaGuMiRankReq baGuMiRankVo) throws IOException {
         Document document = getAnimeRankRequest(baGuMiRankVo);
         List<BaGuMiRankVo> baGuMiRankVos = parseDocument(document);
-        System.err.println(baGuMiRankVos);
-        Integer pageTotalDocument = getPageTotalDocument(document);
         return baGuMiRankVos;
     }
 
@@ -163,7 +156,7 @@ public class BanGuMiApiServiceImpl implements BanGuMiApiService {
      * @throws IOException
      */
     private Document getAnimeRankRequest(BaGuMiRankReq baGuMiRankReq) throws IOException {
-        StringBuffer urlPath = new StringBuffer(ReptileUtils.RANK_BASE_URL);
+        StringBuffer urlPath = new StringBuffer(AllBaseConfig.BanGuMiRankBaseUrl);
         if (baGuMiRankReq.getBigType()!=null){
             urlPath =new StringBuffer().append(String.format("https://bgm.tv/%s/browser,", baGuMiRankReq.getBigType()));
         }
