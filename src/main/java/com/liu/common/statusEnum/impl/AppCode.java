@@ -13,7 +13,8 @@ import lombok.Getter;
 public enum AppCode implements StatusCode {
     APP_ERROR(2000, "业务异常"),
     PRICE_ERROR(2001, "价格异常"),
-    ORDER_NOT_EXIST(2002,"订单异常");
+    ORDER_NOT_EXIST(2002,"订单异常"),
+    SYSTEM_ERROR(2003,"系统异常");
     private int code;
     private String msg;
 

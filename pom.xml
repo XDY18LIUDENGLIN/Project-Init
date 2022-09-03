@@ -20,6 +20,12 @@
         <springboot.version>2.3.7.RELEASE</springboot.version>
         <mybatisPlus.version>3.5.1</mybatisPlus.version>
         <swagger.version>3.0.0</swagger.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <fastjson2.version>2.0.8</fastjson2.version>
+        <yauaa.version>5.20</yauaa.version>
+        <ip2region.version>1.7.2</ip2region.version>
+        <jsoup.version>1.11.3</jsoup.version>
+        <httpClientUtils.version>1.0</httpClientUtils.version>
     </properties>
 
     <dependencies>
@@ -27,9 +33,73 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.arronlong.httpclientutil/httpclientutil -->
+        <dependency>
+            <groupId>com.arronlong.httpclientutil</groupId>
+            <artifactId>httpclientutil</artifactId>
+            <version>${httpClientUtils.version}</version>
+        </dependency>
+
+        <!--java 爬虫(樱花？？ 嘿嘿)-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>ip2region</artifactId>
+            <version>${ip2region.version}</version>
+        </dependency>
+
+<!--        热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <!--jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>
+
+        <!-- 解析客户端操作系统、浏览器 -->
+        <dependency>
+            <groupId>nl.basjes.parse.useragent</groupId>
+            <artifactId>yauaa</artifactId>
+            <version>${yauaa.version}</version>
         </dependency>
 
         <!--        验证-->

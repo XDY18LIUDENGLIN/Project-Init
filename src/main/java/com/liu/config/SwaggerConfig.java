@@ -25,7 +25,7 @@ public class SwaggerConfig {
          * 是否开启swagger，生产环境一般关闭，所以这里定义一个变量
          */
         @Environment(value = "dev")
-        private Boolean enable=true;
+        private Boolean enable = true;
         /**
          * 项目应用名
          */
@@ -38,6 +38,7 @@ public class SwaggerConfig {
          * 项目描述信息
          */
         private String applicationDescription = "XXXXXXX";
+
         @Bean
         public Docket docket() {
             return new Docket(DocumentationType.OAS_30)
@@ -56,6 +57,7 @@ public class SwaggerConfig {
                     .paths(PathSelectors.any())
                     .build();
         }
+
         private ApiInfo apiInfo() {
             return new ApiInfoBuilder()
                     .title(applicationName)
