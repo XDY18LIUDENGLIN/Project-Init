@@ -34,7 +34,7 @@ public class CherryBlossomApiServiceImpl implements CherryBlossomApiService {
         List<Pair<String, String>> itemUrlList = new ArrayList<>();
 
         Connection connect = Jsoup.connect(urlPath.toString());
-        connect.userAgent(AllBaseConfig.getCherryBlossomUserAgent());
+        connect.userAgent(AllBaseConfig.geRandomUserAgent());
         connect.timeout(8000);
         Document document = connect.get();
         Elements rootElements = document.select(".area .fire .lpic");
@@ -54,7 +54,7 @@ public class CherryBlossomApiServiceImpl implements CherryBlossomApiService {
             //重新发起请求
             urlPath = urlPath.append("/?page=").append(page);
             connect = Jsoup.connect(urlPath.toString());
-            connect.userAgent(AllBaseConfig.getCherryBlossomUserAgent());
+            connect.userAgent(AllBaseConfig.geRandomUserAgent());
             connect.timeout(8000);
             document = connect.get();
             rootElements = document.select(".area .fire .lpic");
@@ -86,7 +86,7 @@ public class CherryBlossomApiServiceImpl implements CherryBlossomApiService {
                 CherryBlossomSearchVo cherryBlossomSearchVo = new CherryBlossomSearchVo();
                 cherryBlossomSearchVo.setAnimeTitle(itemUrl.getLeft());
                 Connection connection1 = Jsoup.connect(itemUrl.getRight());
-                connection1.userAgent(AllBaseConfig.getCherryBlossomUserAgent());
+                connection1.userAgent(AllBaseConfig.geRandomUserAgent());
                 connection1.timeout(8000);
                 Document doc2 = connection1.get();
                 Elements movUrlElementList = doc2.getElementsByClass("movurl");
@@ -124,7 +124,7 @@ public class CherryBlossomApiServiceImpl implements CherryBlossomApiService {
         StringBuffer connectUrl = new StringBuffer(AllBaseConfig.CherryBlossomBaseUrl).append("/v/").append(url).append(".html");
         CherryBlossomVideoVo cherryBlossomVideoVo = new CherryBlossomVideoVo();
         Connection connection = Jsoup.connect(connectUrl.toString());
-        connection.userAgent(AllBaseConfig.getCherryBlossomUserAgent());
+        connection.userAgent(AllBaseConfig.geRandomUserAgent());
         connection.timeout(8000);
         Document doc = connection.get();
         Elements select = doc.select(".bofang div");

@@ -1,6 +1,7 @@
 package com.liu.controller;
 
 import com.arronlong.httpclientutil.exception.HttpProcessException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.liu.entity.req.BaGuMiRankReq;
 import com.liu.entity.vo.CalendarVo;
 import com.liu.entity.vo.CherryBlossomSearchVo;
@@ -45,7 +46,7 @@ public class AnimeController {
 
     @ApiOperation(value = "获取BanGuMi每日更新番剧")
     @RequestMapping(value = "/calendar", method = RequestMethod.GET)
-    public List<CalendarVo> listBanGuMiCalendar() throws HttpProcessException {
+    public List<CalendarVo> listBanGuMiCalendar() throws HttpProcessException, JsonProcessingException {
         return bangumiApiService.listCalendar();
     }
 

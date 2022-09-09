@@ -1,7 +1,9 @@
 package com.liu.service.impl;
 
-import com.alibaba.fastjson2.JSON;
 import com.arronlong.httpclientutil.exception.HttpProcessException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liu.entity.req.BaGuMiRankReq;
 import com.liu.entity.vo.BaGuMiRankVo;
 import com.liu.entity.vo.CalendarVo;
@@ -39,10 +41,12 @@ public class BanGuMiApiServiceImpl implements BanGuMiApiService {
             "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36"};
 
     @Override
-    public List<CalendarVo> listCalendar() throws HttpProcessException {
+    public List<CalendarVo> listCalendar() throws HttpProcessException, JsonProcessingException {
         //TODO 设置定时任务,每天爬取数据一次,缓存到Redis中
-        String dataObject = JSON.toJSONString(ReptileUtils.listCalendarApi());
-        List<CalendarVo> calendarVos = JSON.parseArray(dataObject, CalendarVo.class);
+        String dataObject = ReptileUtils.listCalendarApi();
+        ObjectMapper jacksonMapper = new ObjectMapper();
+        List<CalendarVo> calendarVos = jacksonMapper.readValue(dataObject, new TypeReference<List<CalendarVo>>() {
+        });
         //TODO 判断这个是否存在数据，不存在把数据保存到redis中或数据库中
         return calendarVos;
     }

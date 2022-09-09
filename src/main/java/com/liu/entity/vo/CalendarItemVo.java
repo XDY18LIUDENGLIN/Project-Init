@@ -1,6 +1,5 @@
 package com.liu.entity.vo;
 
-import com.alibaba.fastjson2.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.liu.entity.pojo.BgmCollections;
 import com.liu.entity.pojo.BgmImages;

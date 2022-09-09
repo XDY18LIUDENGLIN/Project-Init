@@ -4,7 +4,6 @@ import com.liu.common.annotation.Environment;
 import com.liu.common.exception.ApiException;
 import com.liu.common.statusEnum.impl.AppCode;
 import io.micrometer.core.instrument.util.StringUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -21,7 +20,6 @@ import java.lang.reflect.Method;
  * date : 2022/7/17 22:39
  * describe: Environment的切面
  */
-@Slf4j
 @Aspect
 @Component
 public class
@@ -44,7 +42,6 @@ EnvironmentAspect {
         for (Field field : declaredFields) {
             Environment annotation = field.getAnnotation(Environment.class);
             if (null != annotation && StringUtils.isNotBlank(annotation.value())) {
-                log.info(annotation.value());
                 Boolean isAppointEnvironment = annotation.value().equals(getSystemRunEnvironment());
                 setFieldData(field, aClass.newInstance(), isAppointEnvironment);
                 buildMethod(aClass, field);
@@ -73,6 +70,5 @@ EnvironmentAspect {
         name = name.substring(0, 1).toUpperCase() + name.substring(1);
         // 获取属性的类型
         String type = field.getGenericType().toString();
-        log.info("属性名 -->"+name +" 类型 -->"+type);
     }
 }

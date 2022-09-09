@@ -1,6 +1,7 @@
 package com.liu.service;
 
 import com.arronlong.httpclientutil.exception.HttpProcessException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.liu.entity.req.BaGuMiRankReq;
 import com.liu.entity.vo.CalendarVo;
 
@@ -16,10 +17,11 @@ import java.util.List;
 public interface BanGuMiApiService {
     /**
      * 获取每日更新番剧
+     *
      * @return
      * @throws HttpProcessException
      */
-    List<CalendarVo> listCalendar() throws HttpProcessException;
+    List<CalendarVo> listCalendar() throws HttpProcessException, JsonProcessingException;
 
     /**
      * 获取条目的简略信息

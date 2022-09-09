@@ -3,7 +3,6 @@ package com.liu.handle;
 import com.liu.common.ResultVo;
 import com.liu.common.exception.ApiException;
 import com.liu.common.statusEnum.impl.ResultCode;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * date : 2022/7/17 18:10
  * describe: 统一异常处理
  */
-@Slf4j
 @RestControllerAdvice
 public class ControllerExceptionAdvice {
 
@@ -39,7 +37,7 @@ public class ControllerExceptionAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResultVo exception(Exception e) {
-        log.error("find Exception {}", e);
+        System.err.println(String.format("find Exception {%s}", e));
         return new ResultVo(e.getLocalizedMessage());
     }
 }

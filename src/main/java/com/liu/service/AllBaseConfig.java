@@ -8,6 +8,15 @@ import java.util.Random;
  * @since 2022/9/3 6:21 PM
  */
 public abstract class AllBaseConfig {
+
+    /**
+     * 插画世界首页url
+     */
+    public static final String PivixBaseUrl = "https://vilipix.com/";
+    /**
+     * 插画世界爬取API的url
+     */
+    public static final String PivixAPIUrl = "https://vilipix.com/api";
     /**
      * 樱花动漫检索url
      */
@@ -35,7 +44,7 @@ public abstract class AllBaseConfig {
      *
      * @return
      */
-    public static String getCherryBlossomUserAgent() {
+    public static String geRandomUserAgent() {
         Random random = new Random();
         int index = random.nextInt(CherryBlossomUserAgent.length);
         return CherryBlossomUserAgent[index];
