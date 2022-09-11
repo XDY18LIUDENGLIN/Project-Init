@@ -12,7 +12,7 @@ public abstract class AllBaseConfig {
     /**
      * 插画世界首页url
      */
-    public static final String PivixBaseUrl = "https://vilipix.com/";
+    public static final String PivixBaseUrl = "https://vilipix.com";
     /**
      * 插画世界爬取API的url
      */
