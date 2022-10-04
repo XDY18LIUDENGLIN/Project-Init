@@ -1,5 +1,7 @@
 package com.liu.service.impl;
 
+import cn.hutool.json.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -22,7 +24,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -191,7 +195,28 @@ public class PictureServiceImpl extends AllBaseConfig implements PictureService 
             }
             return Pair.of(authorInfoVoList, null);
         } else {
+            StringBuffer searchPathUrl = new StringBuffer(AllBaseConfig.PivixBaseUrl).append("/tags/").append(keyword).append("/illusts");
+            Connection connect = Jsoup.connect(searchPathUrl.toString());
+            connect.userAgent(AllBaseConfig.geRandomUserAgent()).timeout(8000).ignoreContentType(true);
+            Document document = connect.get();
+            //获取具有结果的script标签，即最末尾的那个
+            Element scriptElement = document.getElementsByTag("script").get(1);
+            int startIndex = scriptElement.toString().indexOf("illusts:");
+            int endIndex = scriptElement.toString().indexOf("}],");
+            String substringTempJson = scriptElement.toString().substring(startIndex, endIndex);
+            //以return标签作为分割，第二个就是真正的数据
+            String tempJson = substringTempJson.split("illusts:")[1];
+            tempJson = tempJson.trim();
+            StringBuffer jsonData = new StringBuffer(tempJson).append("}]");
 
+//            Arrays.stream(jsonData.substring(1, jsonData.length() - 1).split("^\\{+.*\\}$")).
+//                    map(item->)
+
+             Arrays.stream(jsonData.substring(1, jsonData.length() - 1).split("^\\{+.*\\}$"))
+                    .forEach(System.err::println);
+//            result = result.substring(0, result.length() - 1) + "}";
+//            System.err.println(result);
+//            result = result.substring(0, result.length() - 1) + "}";
         }
         return null;
     }

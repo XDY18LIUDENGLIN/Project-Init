@@ -28,6 +28,8 @@
         <httpClientUtils.version>1.0</httpClientUtils.version>
         <hutool.version>5.3.3</hutool.version>
         <music.version>1.2.3</music.version>
+        <dubbo.version>3.0.8</dubbo.version>
+        <apollo.version>2.0.1</apollo.version>
     </properties>
 
     <dependencies>
@@ -40,6 +42,34 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+<!--        dubbo启动-->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper</artifactId>
+            <version>${dubbo.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+            <version>${dubbo.version}</version>
+        </dependency>
+
+<!--        apllo配置中心-->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>${apollo.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,9 +99,15 @@
             <version>${httpClientUtils.version}</version>
         </dependency>
 
+<!--        json解析-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>2.0.8</version>
         </dependency>
 
         <!--java 爬虫(樱花？？ 嘿嘿)-->

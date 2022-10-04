@@ -37,7 +37,7 @@ public class ControllerExceptionAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResultVo exception(Exception e) {
-        System.err.println(String.format("find Exception {%s}", e));
+        System.err.println(e);
         return new ResultVo(e.getLocalizedMessage());
     }
 }

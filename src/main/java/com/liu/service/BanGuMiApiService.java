@@ -2,7 +2,9 @@ package com.liu.service;
 
 import com.arronlong.httpclientutil.exception.HttpProcessException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.liu.entity.req.BaGuMiRankReq;
+import com.liu.entity.vo.BaGuMiRankVo;
 import com.liu.entity.vo.CalendarVo;
 
 import java.io.IOException;
@@ -30,7 +32,7 @@ public interface BanGuMiApiService {
      * @return
      * @throws HttpProcessException
      */
-    Object getSimpleSubject(Integer subjectId) throws HttpProcessException;
+    JsonNode getSimpleSubject(Integer subjectId) throws HttpProcessException, JsonProcessingException;
 
     /**
      * 获取条目的详细信息
@@ -41,7 +43,7 @@ public interface BanGuMiApiService {
      * @return
      * @throws HttpProcessException
      */
-    Object getSubject(Integer subjectId, String pageSize, String timeStamp) throws HttpProcessException;
+    JsonNode getSubject(Integer subjectId, String pageSize, String timeStamp) throws HttpProcessException, JsonProcessingException;
 
     /**
      * 获取动漫排名信息
@@ -49,5 +51,5 @@ public interface BanGuMiApiService {
      * @return
      * @throws IOException
      */
-    Object listAnimeRankInfo(BaGuMiRankReq baGuMiRankVo) throws IOException;
+    List<BaGuMiRankVo> listAnimeRankInfo(BaGuMiRankReq baGuMiRankVo) throws IOException;
 }

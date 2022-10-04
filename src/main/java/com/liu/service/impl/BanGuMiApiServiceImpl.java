@@ -3,6 +3,7 @@ package com.liu.service.impl;
 import com.arronlong.httpclientutil.exception.HttpProcessException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liu.entity.req.BaGuMiRankReq;
 import com.liu.entity.vo.BaGuMiRankVo;
@@ -52,25 +53,28 @@ public class BanGuMiApiServiceImpl implements BanGuMiApiService {
     }
 
     @Override
-    public Object getSimpleSubject(Integer subjectId) throws HttpProcessException {
+    public JsonNode getSimpleSubject(Integer subjectId) throws HttpProcessException, JsonProcessingException {
         StringBuffer pathUrl = new StringBuffer("/v0/subjects/").append(subjectId);
-        Object dataWithHttpUtils = ReptileUtils.listCalendarApi(pathUrl.toString());
-        return dataWithHttpUtils;
+        String dataWithHttpUtils = ReptileUtils.listCalendarApi(pathUrl.toString());
+        ObjectMapper jacksonMapper = new ObjectMapper();
+        return jacksonMapper.readTree(dataWithHttpUtils);
     }
 
     @Override
-    public Object getSubject(Integer subjectId, String responseGroup, String timeStamp) throws HttpProcessException {
+    public JsonNode getSubject(Integer subjectId, String responseGroup, String timeStamp) throws HttpProcessException,
+            JsonProcessingException {
         StringBuffer pathUrl = new StringBuffer("/subject/").append(subjectId);
         pathUrl.append("?responseGroup=").append(responseGroup);
         if (timeStamp != null) {
             pathUrl.append("&timestamp=").append(timeStamp);
         }
-        Object dataWithHttpUtils = ReptileUtils.listCalendarApi(pathUrl.toString());
-        return dataWithHttpUtils;
+        String dataWithHttpUtils = ReptileUtils.listCalendarApi(pathUrl.toString());
+        ObjectMapper jacksonMapper = new ObjectMapper();
+       return jacksonMapper.readTree(dataWithHttpUtils);
     }
 
     @Override
-    public Object listAnimeRankInfo(BaGuMiRankReq baGuMiRankVo) throws IOException {
+    public List<BaGuMiRankVo> listAnimeRankInfo(BaGuMiRankReq baGuMiRankVo) throws IOException {
         Document document = getAnimeRankRequest(baGuMiRankVo);
         List<BaGuMiRankVo> baGuMiRankVos = parseDocument(document);
         return baGuMiRankVos;

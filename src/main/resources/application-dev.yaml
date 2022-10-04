@@ -3,3 +3,30 @@ server:
 spring:
   profiles:
     active: dev
+
+#dubbo服务注册
+dubbo:
+  application:
+    name: ${spring.application.name}
+  register:
+    address: zookeeper://${zookeeper.discover.address}:${zookeeper.discover.port}
+  config-center:
+    address: zookeeper://${zookeeper.discover.address}:${zookeeper.discover.port}
+  metadata-report:
+    address: zookeeper://${zookeeper.discover.address}:${zookeeper.discover.port}
+  protocol:
+    name: dubbo                               # 协议名称
+    port: 20880                               # 协议端口
+
+
+#apollo配置中心
+app:
+  id: 23423425fwf3f3v3v                       #应用ID
+apollo:
+  bootstrap:
+    enabled: true                             #是否开启 Apollo
+    eagerLoad:
+      enabled: false                          #将 Apollo 加载提到初始化日志系统之前
+  autoUpdateInjectedSpringProperties: true    #是否开启 Spring 参数自动更新
+  cluster: default                            #指定使用哪个集群的配置
+
