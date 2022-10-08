@@ -16,7 +16,7 @@ import java.util.List;
  * date : 2022/7/25 23:52
  * describe: Bangumi接口
  */
-public interface BanGuMiApiService {
+public interface BanGuMiSubjectApiService {
     /**
      * 获取每日更新番剧
      *

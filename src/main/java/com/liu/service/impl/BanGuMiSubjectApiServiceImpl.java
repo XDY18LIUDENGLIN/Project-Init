@@ -9,7 +9,7 @@ import com.liu.entity.req.BaGuMiRankReq;
 import com.liu.entity.vo.BaGuMiRankVo;
 import com.liu.entity.vo.CalendarVo;
 import com.liu.service.AllBaseConfig;
-import com.liu.service.BanGuMiApiService;
+import com.liu.service.BanGuMiSubjectApiService;
 import com.liu.utils.BaGuMiUtils;
 import com.liu.utils.ReptileUtils;
 import org.jsoup.Connection;
@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * describe: XXXXXXXX
  */
 @Service
-public class BanGuMiApiServiceImpl implements BanGuMiApiService {
+public class BanGuMiSubjectApiServiceImpl implements BanGuMiSubjectApiService {
 
     private String[] userAgents={"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:83.0) Gecko/20100101 Firefox/83.0",

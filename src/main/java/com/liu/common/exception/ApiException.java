@@ -16,6 +16,27 @@ public class ApiException extends RuntimeException{
     private final String msg;
 
     /**
+     * 设置指定异常
+     * @param statusCode
+     */
+    public ApiException(StatusCode statusCode){
+        super(statusCode.getMsg());
+        this.code = statusCode.getCode();
+        this.msg =statusCode.getMsg();
+    }
+
+    /**
+     * 自定义指定返回集
+     * @param code
+     * @param message
+     */
+    public ApiException(int code, String message){
+        super(message);
+        this.code= code;
+        this.msg = message;
+    }
+
+    /**
      * 手动设置异常
      * @param statusCode 异常枚举类
      * @param message  错误信息

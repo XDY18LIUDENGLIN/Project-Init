@@ -28,49 +28,48 @@ public interface IPictureController {
 
     @ApiOperation(value = "获取所有图片的标签")
     @RequestMapping(value = "/getAllPictureTag", method = RequestMethod.GET)
-    public List<PictureTagVo> getAllPictureTag();
+    List<PictureTagVo> getAllPictureTag();
 
     @ApiOperation(value = "获取所有图片排行榜")
     @RequestMapping(value = "/ranking", method = RequestMethod.GET)
-    public List<PictureRankVo> listPictureRank(@RequestParam("limit") Integer limit,
-                                               @RequestParam("offset") Integer offset,
-                                               @RequestParam("type") Integer type);
+    List<PictureRankVo> listPictureRank(@RequestParam("limit") Integer limit,
+                                        @RequestParam("offset") Integer offset,
+                                        @RequestParam("type") Integer type);
 
     @ApiOperation(value = "获取图片的具体信息")
     @RequestMapping(value = "/getPictureInfo/{pictureId}", method = RequestMethod.GET)
-    public PictureInfoVo getPictureInfo(@PathVariable("pictureId")String pictureId);
-
+    PictureInfoVo getPictureInfo(@PathVariable("pictureId")String pictureId);
 
     @ApiOperation(value = "获取推荐作品")
     @RequestMapping(value = "/recommand", method = RequestMethod.GET)
-    public List<PictureVo> listRecommendedWorks(@RequestParam("limit") Integer limit, @RequestParam("offset") Integer offset);
+    List<PictureVo> listRecommendedWorks(@RequestParam("limit") Integer limit, @RequestParam("offset") Integer offset);
 
     @ApiOperation(value = "获取原创作品或最新作品")
     @RequestMapping(value = "/public", method = RequestMethod.GET)
-    public List<PictureVo> listPublicWorks(@RequestParam("limit") Integer limit,
-                                           @RequestParam("offset") Integer offset,
-                                           @RequestParam("sort") String sort,
-                                           @RequestParam("type") Integer type);
+    List<PictureVo> listPublicWorks(@RequestParam("limit") Integer limit,
+                                    @RequestParam("offset") Integer offset,
+                                    @RequestParam("sort") String sort,
+                                    @RequestParam("type") Integer type);
 
     @ApiOperation(value = "获取作者最出色的图片")
     @RequestMapping(value = "/bestPicture/{pictureId}/{userId}", method = RequestMethod.GET)
-    public List<PictureVo> listBestPictureInAuthor(@RequestParam("limit") Integer limit,
-                                                   @RequestParam("offset") Integer offset,
-                                                   @PathVariable("pictureId") String pictureId,
-                                                   @PathVariable("userId") String userId);
+    List<PictureVo> listBestPictureInAuthor(@RequestParam("limit") Integer limit,
+                                            @RequestParam("offset") Integer offset,
+                                            @PathVariable("pictureId") String pictureId,
+                                            @PathVariable("userId") String userId);
 
     @ApiOperation(value = "获取作者的所有图片")
     @RequestMapping(value = "/getAllPicture/{userId}",method = RequestMethod.GET)
-    public List<PictureVo> listAllPictureByUserId(@PathVariable("userId")String userId,
-                                                  @RequestParam("limit") Integer limit,
-                                                  @RequestParam("offset") Integer offset,
-                                                  @RequestParam("type") Integer type,
-                                                  @RequestParam("sort") String sort);
+    List<PictureVo> listAllPictureByUserId(@PathVariable("userId")String userId,
+                                           @RequestParam("limit") Integer limit,
+                                           @RequestParam("offset") Integer offset,
+                                           @RequestParam("type") Integer type,
+                                           @RequestParam("sort") String sort);
 
     @ApiOperation(value = "通过关键字检索接口")
     @RequestMapping(value = "/search/{seachrType}/{keyword}", method = RequestMethod.GET)
-    public Pair<List<AuthorInfoVo>, List<PictureVo>> listSearch(@PathVariable("seachrType") String type,
-                                                                @PathVariable("keyword") String keyword,
-                                                                @RequestParam("limit") Integer limit,
-                                                                @RequestParam("offset") Integer offset);
+    Pair<List<AuthorInfoVo>, List<PictureVo>> listSearch(@PathVariable("seachrType") String type,
+                                                         @PathVariable("keyword") String keyword,
+                                                         @RequestParam("limit") Integer limit,
+                                                         @RequestParam("offset") Integer offset);
 }
